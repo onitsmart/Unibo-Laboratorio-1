@@ -1,0 +1,28 @@
+[
+    {
+        "outputFileName": "wwwroot/css/bundle-global.css",
+        "inputFiles": [
+            "node_modules/bootstrap/dist/css/bootstrap.css",
+
+            "wwwroot/css/site.css"
+        ],
+        "minify": {
+            "enabled": true
+        },
+        "includeInProject": true,
+        "sourceMap": true
+    },
+    {
+        "outputFileName": "wwwroot/js/bundle-global.js",
+        "inputFiles": [
+            "node_modules/bootstrap/dist/js/bootstrap.js",
+
+            "wwwroot/js/site.js"
+        ],
+        "minify": {
+            "enabled": true
+        },
+        "includeInProject": true,
+        "sourceMap": true
+    }
+]

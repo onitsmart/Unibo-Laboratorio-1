@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Content Include="node_modules\bootstrap\dist\css\bootstrap.css" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="Areas\" />
+        <Folder Include="Infrastructure\" />
+        <Folder Include="Jobs\" />
+        <Folder Include="wwwroot\images\" />
+        <Folder Include="wwwroot\fonts\" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="node_modules\bootstrap\dist\js\bootstrap.js" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="7.0.11" />
+    </ItemGroup>
+
+</Project>
