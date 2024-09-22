@@ -1,25 +1,19 @@
-﻿using System.Collections.Generic;
+﻿using Laboratorio1.Tests.Fundamentals.Models;
+using System.Collections.Generic;
 using Xunit.Abstractions;
 
 namespace Laboratorio1.Tests.Fundamentals
 {
+    /// <summary>
+    /// <see href="https://learn.microsoft.com/en-us/dotnet/csharp/nullable-references"
+    /// </summary>
     public class Nullability
     {
-        private readonly ITestOutputHelper output;
-
-        public Nullability(ITestOutputHelper output)
+        private readonly ITestOutputHelper OutputHelper;
+        
+        public Nullability(ITestOutputHelper outputHelper)
         {
-            this.output = output;
-        }
-
-        private class Person
-        {
-            public string Name { get; set; }
-
-            public Person(string name)
-            {
-                Name = name;
-            }
+            this.OutputHelper = outputHelper;
         }
 
         /// <summary>
@@ -64,7 +58,7 @@ namespace Laboratorio1.Tests.Fundamentals
         };
         [Theory]
         [MemberData(nameof(InputForReturnNameIfNotNull))]
-        public void ReturnNameIfNotNull(int? input, string output)
+        public void ReturnNameIfNotNull(Person? input, string output)
         {
             string? risultato = null;
 
@@ -80,7 +74,7 @@ namespace Laboratorio1.Tests.Fundamentals
         /// </summary>
         [Theory]
         [MemberData(nameof(InputForReturnNameIfNotNull))]
-        public void ReturnNameIfNotNullWithNullConditionalOperator(int? input, string output)
+        public void ReturnNameIfNotNullWithNullConditionalOperator(Person? input, string output)
         {
             string? risultato = null;
 
@@ -107,7 +101,7 @@ namespace Laboratorio1.Tests.Fundamentals
         };
         [Theory]
         [MemberData(nameof(InputForReturnNameIfNotNullWithNullConditionalOperatorAndNullCoalescingOperator))]
-        public void ReturnNameIfNotNullWithNullConditionalOperatorAndNullCoalescingOperator(int? input, string output)
+        public void ReturnNameIfNotNullWithNullConditionalOperatorAndNullCoalescingOperator(Person? input, string output)
         {
             var altString = "Test";
             string? risultato = null;
