@@ -18,6 +18,7 @@ namespace Laboratorio1.Tests.Fundamentals
 
         /// <summary>
         /// Utilizzando il metodo string.Concat() oppure l'operatore +, concatenare le stringhe string1, string2 e string3 per ottenere l'output atteso.
+        /// <see cref="https://learn.microsoft.com/en-us/dotnet/api/system.string.concat?view=net-8.0"
         /// </summary>
         [Fact]
         public void ConcatenateBasic()
@@ -34,7 +35,7 @@ namespace Laboratorio1.Tests.Fundamentals
 
         /// <summary>
         /// Utilizzando la string interpolation ottenere l'output atteso.
-        /// ES: $"Testo {variabile}"
+        /// <see cref="https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/tokens/interpolated"
         /// </summary>
         [Fact]
         public void ConcatenateClever()
@@ -76,11 +77,7 @@ namespace Laboratorio1.Tests.Fundamentals
 
         /// <summary>
         /// Utilizzando lo StringBuilder concatenate l'input inserendo uno spazio tra ogni stringa.
-        /// 
-        /// Lo StringBuilder è una classe che permette di concatenare stringhe in modo efficiente, in quanto non crea nuove stringhe ad ogni concatenazione.
-        /// Usate il metodo Append() per concatenare le stringhe.
-        /// Se serve, usate il metodo Remove() per eliminare dei caratteri.
-        /// Usate il metodo ToString() per ottenere il risultato finale.
+        /// <see cref="https://learn.microsoft.com/en-us/dotnet/api/system.text.stringbuilder?view=net-8.0"/>
         /// </summary>
         [Fact]
         public async Task ConcatenateInALoopWithStringBuilder()
@@ -107,6 +104,7 @@ namespace Laboratorio1.Tests.Fundamentals
 
         /// <summary>
         /// Utilizzando il metodo Contains verificare se la stringa "pippo" è contenuta nell'input ignorando il case.
+        /// <see cref="https://learn.microsoft.com/en-us/dotnet/api/system.string.contains?view=net-8.0"/>
         /// </summary>
         public static IEnumerable<object?[]> InputForContains = new List<object?[]>
         {
@@ -248,6 +246,7 @@ namespace Laboratorio1.Tests.Fundamentals
         /// <summary>
         /// Utilizzando il metodo Equals verificare se le 2 stringhe in input sono uguali, considerando il case. 
         /// Pippo != pippo.
+        /// <see cref="https://learn.microsoft.com/en-us/dotnet/api/system.string.equals?view=net-8.0"/>
         /// </summary>
         public static IEnumerable<object?[]> InputForEquals = new List<object?[]>
         {
