@@ -34,7 +34,7 @@ namespace Laboratorio1.Tests.Fundamentals
         }
 
         /// <summary>
-        /// Modificando la classe Kid, fai sì' che il test seguente abbia successo.
+        /// Modificando la classe Kid, fai sì che il test seguente abbia successo.
         /// Hint: usa l'override per evitare che il metodo DrinkAlchool lasci bere il bambino.
         /// </summary>
         [Fact]
