@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,7 +43,22 @@ namespace Laboratorio1.Tests.Fundamentals
             Assert.NotNull(bee);
             Assert.Equal("Bzz", bee.Name);
             Assert.Equal(5, bee.PollenGathered);
-            Assert.Equal("You gota bee-lieve", bee.Motto);
+            Assert.Equal("You gotta bee-lieve in yourself!", bee.Motto);
+        }
+
+        /// <summary>
+        /// Usare lo using per assicurarsi di avere chiuso il file.
+        /// <see href="https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/statements/using"/>
+        /// </summary>
+        [Fact]
+        public void EnsureClosure()
+        {
+            var fileStream = File.Open("./Resources/FileEmpty.txt", FileMode.Open);
+
+            var buffer = new byte[100];
+            fileStream.Read(buffer, 0, 0);
+
+            Assert.True(fileStream.CanRead == false);
         }
     }
 }
