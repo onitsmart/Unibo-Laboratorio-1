@@ -1,9 +1,7 @@
-﻿using Laboratorio1.Tests.Fundamentals.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using Xunit.Abstractions;
-using static Laboratorio1.Tests.Fundamentals.AttributeAndExtensionsMethod;
 
 namespace Laboratorio1.Tests.Fundamentals
 {
@@ -123,5 +121,29 @@ namespace Laboratorio1.Tests.Fundamentals
                 2
             },
         };
+
+        /// <summary>
+        /// Convertire l'array in lista.
+        /// </summary>
+        [Fact]
+        public void FromArrayToList()
+        {
+            var inputArray = new Toy[]
+            {
+                new Toy("Robot", 3),
+                new Toy("Macchinina", 2),
+                new Toy("Trottola", 0)
+            };
+
+            List<Toy> outputList = new List<Toy>();
+
+            // TO-DO
+
+            Assert.True(outputList is List<Toy>);
+            Assert.True(outputList.Count == 3);
+            Assert.True(outputList[0].Name == "Robot");
+            Assert.True(outputList[1].Name == "Macchinina");
+            Assert.True(outputList[2].Name == "Trottola");
+        }
     }
 }
