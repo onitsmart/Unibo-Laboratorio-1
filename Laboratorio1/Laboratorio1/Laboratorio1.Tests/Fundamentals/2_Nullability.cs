@@ -19,6 +19,16 @@ namespace Laboratorio1.Tests.Fundamentals
         /// <summary>
         /// Ritornare true solo se l'input non è null.
         /// </summary>
+        [Theory]
+        [MemberData(nameof(InputForCheckNotNull))]
+        public void CheckNotNull(int? input, bool output)
+        {
+            var risultato = false;
+
+            // TO-DO
+
+            Assert.Equal(output, risultato);
+        }
         public static IEnumerable<object?[]> InputForCheckNotNull = new List<object?[]>
         {
             new object?[] {
@@ -30,21 +40,21 @@ namespace Laboratorio1.Tests.Fundamentals
                 false
             }
         };
-        [Theory]
-        [MemberData(nameof(InputForCheckNotNull))]
-        public void CheckNotNull(int? input, bool output)
-        {
-            var risultato = false;
-
-            // TO-DO
-
-            Assert.Equal(output, risultato);
-        }
 
         /// <summary>
         /// Ritornare il campo name dell'oggetto se l'oggetto non è nullo e null altrimenti.
         /// Usate il metodo classico con controlli di nullabilità.
         /// </summary>
+        [Theory]
+        [MemberData(nameof(InputForReturnNameIfNotNull))]
+        public void ReturnNameIfNotNull(Person? input, string output)
+        {
+            string? risultato = null;
+
+            // TO-DO
+
+            Assert.Equal(output, risultato);
+        }
         public static IEnumerable<object?[]> InputForReturnNameIfNotNull = new List<object?[]>
         {
             new object?[] {
@@ -56,16 +66,6 @@ namespace Laboratorio1.Tests.Fundamentals
                 null
             }
         };
-        [Theory]
-        [MemberData(nameof(InputForReturnNameIfNotNull))]
-        public void ReturnNameIfNotNull(Person? input, string output)
-        {
-            string? risultato = null;
-
-            // TO-DO
-
-            Assert.Equal(output, risultato);
-        }
 
         /// <summary>
         /// Ritornare il campo name dell'oggetto se l'oggetto non è nullo e null altrimenti.
@@ -88,17 +88,6 @@ namespace Laboratorio1.Tests.Fundamentals
         /// Usate il null conditional operator per accedere al campo name e il null coalescing operator per ritornare la stringa 
         /// <see href="https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/operators/null-coalescing-operator"
         /// </summary>
-        public static IEnumerable<object?[]> InputForReturnNameIfNotNullWithNullConditionalOperatorAndNullCoalescingOperator = new List<object?[]>
-        {
-            new object?[] {
-                new Person("Pippo"),
-                "Pippo"
-            },
-            new object?[] {
-                null,
-                "Test"
-            }
-        };
         [Theory]
         [MemberData(nameof(InputForReturnNameIfNotNullWithNullConditionalOperatorAndNullCoalescingOperator))]
         public void ReturnNameIfNotNullWithNullConditionalOperatorAndNullCoalescingOperator(Person? input, string output)
@@ -110,5 +99,16 @@ namespace Laboratorio1.Tests.Fundamentals
 
             Assert.Equal(output, risultato);
         }
+        public static IEnumerable<object?[]> InputForReturnNameIfNotNullWithNullConditionalOperatorAndNullCoalescingOperator = new List<object?[]>
+        {
+            new object?[] {
+                new Person("Pippo"),
+                "Pippo"
+            },
+            new object?[] {
+                null,
+                "Test"
+            }
+        };
     }
 }

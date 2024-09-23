@@ -109,6 +109,17 @@ namespace Laboratorio1.Tests.Fundamentals
         /// Utilizzando il metodo Contains verificare se la stringa "pippo" è contenuta nell'input ignorando il case.
         /// <see href="https://learn.microsoft.com/en-us/dotnet/api/system.string.contains?view=net-8.0"/>
         /// </summary>
+        [Theory]
+        [MemberData(nameof(InputForContains))]
+        public void Contains(string input, bool output)
+        {
+            var risultato = false;
+            var stringToCheck = "pippo";
+
+            // TO-DO
+
+            Assert.Equal(output, risultato);
+        }
         public static IEnumerable<object?[]> InputForContains = new List<object?[]>
         {
             new object?[] {
@@ -132,17 +143,6 @@ namespace Laboratorio1.Tests.Fundamentals
                 true
             },
         };
-        [Theory]
-        [MemberData(nameof(InputForContains))]
-        public void Contains(string input, bool output)
-        {
-            var risultato = false;
-            var stringToCheck = "pippo";
-
-            // TO-DO
-
-            Assert.Equal(output, risultato);
-        }
 
         /// <summary>
         /// Utilizzando un metodo della classe string trasformare il testo in input in uppercase.
@@ -175,6 +175,16 @@ namespace Laboratorio1.Tests.Fundamentals
         /// <summary>
         /// Utilizzando un metodo della classe string ritornare true se il testo in input è vuoto o null, altrimenti false.
         /// </summary>
+        [Theory]
+        [MemberData(nameof(InputForEmptyTest))]
+        public async Task EmptyCheck(string? input, bool output)
+        {
+            var risultato = false;
+
+            // TO-DO
+
+            Assert.Equal(output, risultato);
+        }
         public static IEnumerable<object?[]> InputForEmptyTest = new List<object?[]>
         {
             new object?[] {
@@ -198,9 +208,13 @@ namespace Laboratorio1.Tests.Fundamentals
                 false
             },
         };
+
+        /// <summary>
+        /// Utilizzando un metodo della classe string ritornare true se il testo in input contiene almeno un carattere.
+        /// </summary>
         [Theory]
-        [MemberData(nameof(InputForEmptyTest))]
-        public async Task EmptyCheck(string? input, bool output)
+        [MemberData(nameof(InputForWhitespaceTest))]
+        public void WhitespaceCheck(string? input, bool output)
         {
             var risultato = false;
 
@@ -208,10 +222,6 @@ namespace Laboratorio1.Tests.Fundamentals
 
             Assert.Equal(output, risultato);
         }
-
-        /// <summary>
-        /// Utilizzando un metodo della classe string ritornare true se il testo in input contiene almeno un carattere.
-        /// </summary>
         public static IEnumerable<object?[]> InputForWhitespaceTest = new List<object?[]>
         {
             new object?[] {
@@ -235,9 +245,15 @@ namespace Laboratorio1.Tests.Fundamentals
                 false
             },
         };
+
+        /// <summary>
+        /// Utilizzando il metodo Equals verificare se le 2 stringhe in input sono uguali, considerando il case. 
+        /// Pippo != pippo.
+        /// <see href="https://learn.microsoft.com/en-us/dotnet/api/system.string.equals?view=net-8.0"/>
+        /// </summary>
         [Theory]
-        [MemberData(nameof(InputForWhitespaceTest))]
-        public void WhitespaceCheck(string? input, bool output)
+        [MemberData(nameof(InputForEquals))]
+        public void EqualsCheck(string input1, string input2, bool output)
         {
             var risultato = false;
 
@@ -245,12 +261,6 @@ namespace Laboratorio1.Tests.Fundamentals
 
             Assert.Equal(output, risultato);
         }
-
-        /// <summary>
-        /// Utilizzando il metodo Equals verificare se le 2 stringhe in input sono uguali, considerando il case. 
-        /// Pippo != pippo.
-        /// <see href="https://learn.microsoft.com/en-us/dotnet/api/system.string.equals?view=net-8.0"/>
-        /// </summary>
         public static IEnumerable<object?[]> InputForEquals = new List<object?[]>
         {
             new object?[] {
@@ -269,15 +279,5 @@ namespace Laboratorio1.Tests.Fundamentals
                 true
             }
         };
-        [Theory]
-        [MemberData(nameof(InputForEquals))]
-        public void EqualsCheck(string input1, string input2, bool output)
-        {
-            var risultato = false;
-
-            // TO-DO
-
-            Assert.Equal(output, risultato);
-        }
     }
 }

@@ -35,6 +35,12 @@ namespace Laboratorio1.Tests.Fundamentals
         /// Prendendo come esempio l'extension method GetDescrizione, implementare un extension method che prenda l'attributo 
         /// </summary>
         /// <param name="outputHelper"></param>
+        [Theory]
+        [MemberData(nameof(InputForTestExtensionMethod))]
+        public void TestExtensionMethod(Animal animal, string output)
+        {
+            Assert.Equal(animal.GetCall(), output);
+        }
         public static IEnumerable<object[]> InputForTestExtensionMethod = new List<object[]>
         {
             new object[] {
@@ -50,12 +56,6 @@ namespace Laboratorio1.Tests.Fundamentals
                 "?"
             },
         };
-        [Theory]
-        [MemberData(nameof(InputForTestExtensionMethod))]
-        public void TestExtensionMethod(Animal animal, string output)
-        {
-            Assert.Equal(animal.GetCall(), output);
-        }
     }
 
     public static class EnumExtensions
