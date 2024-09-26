@@ -31,7 +31,14 @@ namespace Laboratorio1.Tests.Fundamentals
             string string3 = "paperino";
             var risultato = string.Empty;
 
-            // TO-DO
+            // Esempio con string.Concat
+            risultato = string.Concat("Ciao ", string1, " ", string2, " & ", string3, "!");
+
+            // Esempio con l'operatore +
+            risultato = "Ciao " + string1 + " " + string2 + " & " + string3 + "!";
+
+            // Esempio con string.Format
+            risultato = string.Format("Ciao {0} {1} & {2}!", string1, string2, string3);
 
             Assert.Equal("Ciao Pippo pluto & paperino!", risultato, ignoreCase: true);
         }
@@ -48,7 +55,7 @@ namespace Laboratorio1.Tests.Fundamentals
             string string3 = "paperino";
             var risultato = string.Empty;
 
-            // TO-DO
+            risultato = $"Ciao {string1} {string2} & {string3}!";
 
             Assert.Equal("Ciao Pippo pluto & paperino!", risultato, ignoreCase: true);
         }
@@ -68,7 +75,13 @@ namespace Laboratorio1.Tests.Fundamentals
             var stopWatch = new Stopwatch();
             stopWatch.Start();
 
-            // TO-DO
+            // Concatenazione con l'operatore +, si può usare uno dei 3 metodi usati sopra a piacere
+            for (int i = 0; i < strings.Length; i++)
+            {
+                risultato += $"{strings[i]} ";
+            }
+            // Rimuovo lo spazio finale
+            risultato = risultato.Trim();
 
             var elapsed = stopWatch.ElapsedMilliseconds;
             stopWatch.Stop();
@@ -95,7 +108,13 @@ namespace Laboratorio1.Tests.Fundamentals
             var stopWatch = new Stopwatch();
             stopWatch.Start();
 
-            // TO-DO
+            for (int i = 0; i < strings.Length; i++)
+            {
+                stringBuilder.Append($"{strings[i]} ");
+            }
+            stringBuilder.Remove(stringBuilder.Length - 1, 1);
+
+            risultato = stringBuilder.ToString();
 
             var elapsed = stopWatch.ElapsedMilliseconds;
             stopWatch.Stop();
@@ -116,7 +135,8 @@ namespace Laboratorio1.Tests.Fundamentals
             var risultato = false;
             var stringToCheck = "pippo";
 
-            // TO-DO
+            // Parametro StringComparison.OrdinalIgnoreCase per ignorare il case
+            risultato = input.Contains(stringToCheck, System.StringComparison.OrdinalIgnoreCase);
 
             Assert.Equal(output, risultato);
         }
@@ -153,7 +173,7 @@ namespace Laboratorio1.Tests.Fundamentals
             var input = "pippo";
             var risultato = string.Empty;
 
-            // TO-DO
+            risultato = input.ToUpper();
 
             Assert.Equal("PIPPO", risultato);
         }
@@ -167,7 +187,7 @@ namespace Laboratorio1.Tests.Fundamentals
             var input = "PIPPO";
             var risultato = string.Empty;
 
-            // TO-DO
+            risultato = input.ToLower();
 
             Assert.Equal("pippo", risultato);
         }
@@ -181,7 +201,7 @@ namespace Laboratorio1.Tests.Fundamentals
         {
             var risultato = false;
 
-            // TO-DO
+            risultato = string.IsNullOrEmpty(input);
 
             Assert.Equal(output, risultato);
         }
@@ -218,7 +238,8 @@ namespace Laboratorio1.Tests.Fundamentals
         {
             var risultato = false;
 
-            // TO-DO
+            // Rispetto al test precedente, in questo caso il metodo isNullOrWhiteSpace ritorna true anche se la stringa contiene solo spazi
+            risultato = string.IsNullOrWhiteSpace(input) == false;
 
             Assert.Equal(output, risultato);
         }
@@ -257,7 +278,8 @@ namespace Laboratorio1.Tests.Fundamentals
         {
             var risultato = false;
 
-            // TO-DO
+            // Non è necessario specificare che si vuole considerare il case perchè di default il case viene considerato
+            risultato = string.Equals(input1, input2);
 
             Assert.Equal(output, risultato);
         }
