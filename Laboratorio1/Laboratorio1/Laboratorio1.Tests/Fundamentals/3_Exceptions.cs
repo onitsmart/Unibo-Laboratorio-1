@@ -25,7 +25,17 @@ namespace Laboratorio1.Tests.Fundamentals
         [Fact]
         public void InterceptAnException()
         {
-            throw new Exception("Intercettami");
+            // Try-catch
+            // Intercetta eventuali eccezioni lanciate dal codice posto nel blocco del try e gestisce eventuali eccezioni nel catch.
+            // Attenzione che il lancio delle eccezioni è costoso, dove si può evitiamo di generarle.
+            try
+            {
+                throw new Exception("Intercettami");
+            }
+            catch { }
+            // Equivalente al catch sopra, con la differenza che creiamo una variabile per l'eccezione.
+            // Viene usato se dobbiamo intercettare l'eccezione e ci interessa avere info su che tipo di eccezione ci sia stata.
+            //catch (Exception ex) { }
 
             Assert.True(true);
         }
@@ -40,7 +50,14 @@ namespace Laboratorio1.Tests.Fundamentals
         {
             var risultato = false;
 
-            var test = input!.Name;
+            try
+            {
+                var test = input.Name;
+            }
+            catch (Exception ex)
+            {
+                risultato = true;
+            }
 
             Assert.Equal(risultato, output);
         }
@@ -66,8 +83,27 @@ namespace Laboratorio1.Tests.Fundamentals
         {
             var fileStream = File.Open(filename, FileMode.Open);
 
-            var buffer = new byte[100];
-            fileStream.ReadExactly(buffer, 0, 100);
+            // Try-catch-finally 
+            // Il codice posto nel finally abbiamo la certezza che venga sempre eseguito, sia che il codice finisca nel catch, sia che il codice non vada in eccezione.
+            // Può essere usato per rilasciare eventuali risorse o chiudere stream.
+            try
+            {
+                var buffer = new byte[100];
+                fileStream.ReadExactly(buffer, 0, 100);
+            }
+            // Si possono concatenare N catch di seguito. 
+            // Normalmente i più permissivi vengoono lasciati in fondo, in questo caso l'ultimo catcha Exception che è la classe base per tutte le eccezioni.
+            // Questa struttura è "a cascata". Il codice eseguito sarà quello del primo catch abbastanza permissivo per gestire l'eccezione lanciata.
+            catch (EndOfStreamException ex)
+            {
+            }
+            catch (Exception ex)
+            {
+            }
+            finally
+            {
+                fileStream.Close();
+            }
 
             Assert.True(fileStream.CanRead == false);
         }

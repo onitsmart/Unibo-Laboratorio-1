@@ -36,9 +36,19 @@ namespace Laboratorio1.Tests.Fundamentals
         [Fact]
         public void FastWayToSetupAClass()
         {
-            Bee bee = null;
+            // Esempio 1 Senza sugar
+            var bee = new Bee();
+            bee.Name = "Bzz";
+            bee.PollenGathered = 5;
+            bee.Motto = "You gotta bee-lieve in yourself!";
 
-            // TO-DO
+            // Esempio 2 Con sugar
+            bee = new Bee
+            {
+                Name = "Bzz",
+                PollenGathered = 5,
+                Motto = "You gotta bee-lieve in yourself!"
+            };
 
             Assert.NotNull(bee);
             Assert.Equal("Bzz", bee.Name);
@@ -53,10 +63,16 @@ namespace Laboratorio1.Tests.Fundamentals
         [Fact]
         public void EnsureClosure()
         {
-            var fileStream = File.Open("./Resources/FileEmpty.txt", FileMode.Open);
+            FileStream fileStream;
 
-            var buffer = new byte[100];
-            fileStream.Read(buffer, 0, 0);
+            // Using garantisce che alla fine del blocco di codice (un blocco è tutto il codice contenuto all'interno di due parentesi graffe)
+            // la risorsa oggetto della using viene rilasciata.
+            // Nel caso specifico il fileStream viene chiuso evitando di sprecare risorse.
+            using (fileStream = File.Open("./Resources/FileEmpty.txt", FileMode.Open))
+            {
+                var buffer = new byte[100];
+                fileStream.Read(buffer, 0, 0);
+            }
 
             Assert.True(fileStream.CanRead == false);
         }

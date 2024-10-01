@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Linq;
 using Xunit.Abstractions;
 
 namespace Laboratorio1.Tests.Fundamentals
@@ -37,14 +38,27 @@ namespace Laboratorio1.Tests.Fundamentals
         [MemberData(nameof(InputForNormalForElementInCollection))]
         public void NormalForElementInCollection(IEnumerable<int> input, int output)
         {
-            var risultato = -1;
+            // Inizializzazione risultato a 0 per poter avere un conteggio corretto
+            var risultato = 0;
 
-            // TO-DO
+            // Esempio 1 Usiamo l'operatore modulo per capire se un numero è pari o dispari e aggiungiamo 1 a risultato solo se è pari con if
+            //for (int i = 0; i < input.Count(); i++)
+            //{
+            //    if (input.ElementAt(i) % 2 == 0)
+            //        risultato += 1;
+            //}
+
+            // Esempio 2 Usiamo l'operatore modulo per capire se un numero è pari o dispari e aggiungiamo 1 a risultato solo se è pari con operatore ternario
+            for (int i = 0; i < input.Count(); i++)
+                risultato += (input.ElementAt(i) % 2 == 0) ? 1 : 0;
 
             Assert.Equal(output, risultato);
         }
         public static IEnumerable<object[]> InputForNormalForElementInCollection = new List<object[]>
         {
+            // C'erano 2 errori nel test.
+            // 1 - Inizializzazione con int[ 1, 2, 3, 5, 7, 12 ] per qualche motivo non riesce a capire che è un IEnumerable. Non chiaro il perchè, sembra una peculiarità della libreria dei tests.
+            // 2 - Nell'array seguente i numeri pari sono 2 e non 3 come era stato impostato
             new object[] {
                 new int[6]{ 1, 2, 3, 5, 7, 12 },
                 2
@@ -67,9 +81,19 @@ namespace Laboratorio1.Tests.Fundamentals
         [MemberData(nameof(InputForNormalForElementInCollection))]
         public void ForeachElementInCollection(IEnumerable<int> input, int output)
         {
-            var risultato = -1;
+            // Inizializzazione risultato a 0 per poter avere un conteggio corretto
+            var risultato = 0;
 
-            // TO-DO
+            // Esempio 1 Usiamo l'operatore modulo per capire se un numero è pari o dispari e aggiungiamo 1 a risultato solo se è pari con if
+            //foreach (var elemento in input)
+            //{
+            //    if (elemento % 2 == 0)
+            //        risultato += 1;
+            //}
+
+            // Esempio 2 Usiamo l'operatore modulo per capire se un numero è pari o dispari e aggiungiamo 1 a risultato solo se è pari con operatore ternario
+            foreach (var elemento in input)
+                risultato += elemento % 2 == 0 ? 1 : 0;
 
             Assert.Equal(output, risultato);
         }
@@ -83,10 +107,22 @@ namespace Laboratorio1.Tests.Fundamentals
         [MemberData(nameof(InputForArrayVsDictionary))]
         public void ArrayVsDictionary(ImmutableArray<Toy> inputArray, ImmutableDictionary<int, IEnumerable<Toy>> inputDictionary, int output)
         {
-            var risultatoDaArray = -1;
-            var risultatoDaDictionary = -1;
+            // Inizializzazione risultati a 0 per poter avere un conteggio corretto
+            var risultatoDaArray = 0;
+            var risultatoDaDictionary = 0;
 
-            // TO-DO
+            // Sull'array, senza usare LINQ, il meglio che possiamo fare è ciclare su ogni oggetto e controllare.
+            // Se ha 2 batterie allora aggiungiamo 1 al risultato.
+            foreach (var toy in inputArray)
+            {
+                if (toy.NumberOfBatteries == 2)
+                    risultatoDaArray++;
+            }
+
+            // Su un dictionary, se correttamente costruito, possiamo accedere direttamente agli elementi d'interesse, per cui non abbiamo bisogno di usare una if.
+            // Una volta trovati gli elementi con chiave 2 (batterie richieste) ci basta contare tutti gli elementi presenti.
+            if (inputDictionary.TryGetValue(2, out var toysWithTwoBatteries) && toysWithTwoBatteries != null)
+                risultatoDaDictionary = toysWithTwoBatteries.Count();
 
             Assert.Equal(output, risultatoDaArray);
             Assert.Equal(output, risultatoDaDictionary);
@@ -137,7 +173,12 @@ namespace Laboratorio1.Tests.Fundamentals
 
             List<Toy> outputList = new List<Toy>();
 
-            // TO-DO
+            // Soluzione dell'esercizio usando il metodo toList della classe array
+            outputList = inputArray.ToList();
+
+            // NOTA
+            // Esistono vari metodi per convertire da una collection all'altra.
+            // Ad esempio ToArray sulla lista vi permette di generare un'array a partire da una lista..
 
             Assert.True(outputList is List<Toy>);
             Assert.True(outputList.Count == 3);

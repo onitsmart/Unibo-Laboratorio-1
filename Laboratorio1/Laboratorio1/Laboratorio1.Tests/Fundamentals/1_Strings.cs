@@ -31,13 +31,13 @@ namespace Laboratorio1.Tests.Fundamentals
             string string3 = "paperino";
             var risultato = string.Empty;
 
-            // Esempio con string.Concat
+            // Esempio 1 con string.Concat
             risultato = string.Concat("Ciao ", string1, " ", string2, " & ", string3, "!");
 
-            // Esempio con l'operatore +
+            // Esempio 2 con l'operatore +
             risultato = "Ciao " + string1 + " " + string2 + " & " + string3 + "!";
 
-            // Esempio con string.Format
+            // Esempio 3 con string.Format
             risultato = string.Format("Ciao {0} {1} & {2}!", string1, string2, string3);
 
             Assert.Equal("Ciao Pippo pluto & paperino!", risultato, ignoreCase: true);
@@ -197,7 +197,7 @@ namespace Laboratorio1.Tests.Fundamentals
         /// </summary>
         [Theory]
         [MemberData(nameof(InputForEmptyTest))]
-        public async Task EmptyCheck(string? input, bool output)
+        public void EmptyCheck(string? input, bool output)
         {
             var risultato = false;
 
@@ -279,7 +279,11 @@ namespace Laboratorio1.Tests.Fundamentals
             var risultato = false;
 
             // Non è necessario specificare che si vuole considerare il case perchè di default il case viene considerato
+            // Esempio 1 con metodo statico
             risultato = string.Equals(input1, input2);
+
+            // Esempio 2 con metodo d'istanza
+            risultato = input1.Equals(input2);
 
             Assert.Equal(output, risultato);
         }

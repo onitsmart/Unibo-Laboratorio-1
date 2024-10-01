@@ -10,7 +10,7 @@ namespace Laboratorio1.Tests.Fundamentals
     public class Nullability
     {
         private readonly ITestOutputHelper OutputHelper;
-        
+
         public Nullability(ITestOutputHelper outputHelper)
         {
             this.OutputHelper = outputHelper;
@@ -25,7 +25,11 @@ namespace Laboratorio1.Tests.Fundamentals
         {
             var risultato = false;
 
-            // TO-DO
+            // Esempio 1 con controllo !=
+            risultato = input != null;
+
+            // Esempio 2 con proprietà HasValue
+            risultato = input.HasValue;
 
             Assert.Equal(output, risultato);
         }
@@ -51,7 +55,19 @@ namespace Laboratorio1.Tests.Fundamentals
         {
             string? risultato = null;
 
-            // TO-DO
+            // Esempio 1 forma estesa
+            if (input == null)
+            {
+                risultato = null;
+            }
+            else
+            {
+                risultato = input.Name;
+            }
+
+            // Esempio 2 forma compatta
+            if (input != null)
+                risultato = input.Name;
 
             Assert.Equal(output, risultato);
         }
@@ -78,7 +94,9 @@ namespace Laboratorio1.Tests.Fundamentals
         {
             string? risultato = null;
 
-            // TO-DO
+            // Null conditional operator.
+            // Entra dentro all'oggetto se l'oggetto non è nullo, ritorna null direttamente se l'oggetto è nullo.
+            risultato = input?.Name;
 
             Assert.Equal(output, risultato);
         }
@@ -95,7 +113,10 @@ namespace Laboratorio1.Tests.Fundamentals
             var altString = "Test";
             string? risultato = null;
 
-            // TO-DO
+            // Null coalescing operator.
+            // Se ciò che c'è a sinistra è null allora ritorna ciò che è posto alla destra.
+            // E' come l'operatore ternario "condizione ? caso true : caso false" ma controlla solo il caso nullo.
+            risultato = input?.Name ?? altString;
 
             Assert.Equal(output, risultato);
         }

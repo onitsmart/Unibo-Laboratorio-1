@@ -75,20 +75,44 @@ namespace Laboratorio1.Tests.Fundamentals
             return risultato;
         }
 
-        public static string GetCall(this Enum value)
+        // Finezza vista a lezione.
+        // Invece di usare la generica Enum, si può specificare la specifica enum Animal in quanto solo gli animali prevediamo abbiano un verso
+        public static string GetCall(this AttributeAndExtensionsMethod.Animal value)
         {
-            throw new NotImplementedException();
+            var risultato = string.Empty;
+
+            // Reflection per arrivare al campo dell'enum (Cane, Gatto... dell'enum Animal)
+            // La reflection è molto potente in quanto vi permette di accedere al codice durante l'esecuzione dell'applicativo. 
+            // Impatta le performance. ATTENZIONE ad usarla solo se indispensabile.
+            var field = value.GetType().GetField(value.ToString());
+
+            if (field != null)
+            {
+                // Su questo campo andiamo a prendere l'attributo call.
+                // La presenza o meno dell'attributo viene controllata nella riga successiva con null conditional e null coalescing.
+                var attribute = (CallAttribute?)Attribute.GetCustomAttribute(field, typeof(CallAttribute));
+                risultato = attribute?.Call ?? string.Empty;
+            }
+
+            return risultato;
         }
     }
 
     [System.AttributeUsage(System.AttributeTargets.Field)]
     public class CallAttribute : System.Attribute
     {
-        private string Call;
+        private string CallValue;
+        public string Call
+        {
+            get
+            {
+                return CallValue;
+            }
+        }
 
         public CallAttribute(string call)
         {
-            Call = call;
+            CallValue = call;
         }
     }
 }

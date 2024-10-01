@@ -24,10 +24,10 @@ namespace Laboratorio1.Tests.Fundamentals
         {
             var kid = new Kid("Pippo", DateTime.Now.AddYears(-6));
 
-            // TO-DO Decommenta il codice sottostante
-            // OutputHelper.WriteLine(kid.Drive());
+            // Correzione - L'IF che era presente nel branch principale era un refuso.
+            OutputHelper.WriteLine(kid.Drive());
 
-            //Assert.False(kid.IsDriving());
+            Assert.False(kid.IsDriving());
         }
 
         /// <summary>
@@ -39,10 +39,9 @@ namespace Laboratorio1.Tests.Fundamentals
         {
             var kid = new Kid("Pippo", DateTime.Now.AddYears(-6));
 
-            // TO-DO Decommenta il codice sottostante
-            //kid.DrinkAlchool();
+            kid.DrinkAlchool();
 
-            //Assert.False(kid.IsDrinking());
+            Assert.False(kid.IsDrinking());
         }
     }
 }
