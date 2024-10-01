@@ -25,10 +25,7 @@ namespace Laboratorio1.Tests.Fundamentals
             var kid = new Kid("Pippo", DateTime.Now.AddYears(-6));
 
             // TO-DO Decommenta il codice sottostante
-            //if (kid.DrivingLicence)
-            //{
-            //    OutputHelper.WriteLine(kid.Drive());
-            //}
+            // OutputHelper.WriteLine(kid.Drive());
 
             //Assert.False(kid.IsDriving());
         }

@@ -46,11 +46,11 @@ namespace Laboratorio1.Tests.Fundamentals
         public static IEnumerable<object[]> InputForNormalForElementInCollection = new List<object[]>
         {
             new object[] {
-                new int[ 1, 2, 3, 5, 7, 12 ],
-                3
+                new int[6]{ 1, 2, 3, 5, 7, 12 },
+                2
             },
             new object[] {
-                new int[ 1, 3, 5, 7 ],
+                new int[4]{ 1, 3, 5, 7 },
                 0
             },
             new object[] {
